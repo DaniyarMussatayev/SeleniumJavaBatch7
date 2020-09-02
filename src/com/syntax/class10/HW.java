@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -102,12 +103,14 @@ public class HW {
 		alertConfirm.accept();
 		WebElement confirmText=driver.findElement(By.id("demo"));
 		System.out.println(confirmText.getText());
+		Thread.sleep(3000);
 		
 		//Drag and Drop
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("window.scrollBy(0, 600)");
 		WebElement drag=driver.findElement(By.xpath("//img[@class=' lazyloaded']"));
 		WebElement drop=driver.findElement(By.xpath("//div[@ondrop='if (!window.__cfRLUnblockHandlers) return false; drop(event)']"));
 		Actions a=new Actions(driver);
-		Thread.sleep(2000);
 		a.clickAndHold(drag).moveToElement(drop).release().build().perform();
 
 
